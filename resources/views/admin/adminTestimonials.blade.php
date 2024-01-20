@@ -37,11 +37,11 @@
             yes
             @else 
             No
-            @endif
+            @endif 
         </td>
-        <td><a href="updateTestimonial/{{ $testimonial->id }}">Edit</a></td>
-        <td><a href="deleteTestimonial/{{ $testimonial->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
-        <td><a href="showTestimonial/{{ $testimonial->id }}">Show</a></td>
+        <td><a href="editTestimoninals/{{ $testimonial->id }}">Edit</a></td>
+        <td><a href="deleteTestimoninals/{{ $testimonial->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+        <td><a href="showTestimoninals/{{ $testimonial->id }}">Show</a></td>
       </tr>
       @endforeach
     </tbody>

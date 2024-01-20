@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Testimonial;
+use App\Models\Teacher;
 
 class KindController extends Controller
 {
     public function home()
     {
-        return view('index');
+        $teachers = Teacher::get();
+        $testimonials = Testimonial::get();
+        return view ('index', compact ('teachers', 'testimonials'));
     }
     public function team()
     {
-        return view('teachers');
+        $teachers = Teacher::get();
+        return view ('teachers', compact ('teachers'));
     }
     public function error ()
     {
@@ -39,9 +44,10 @@ class KindController extends Controller
     {
         return view('appointment');
     }
-    public function testimonials()
+    public function testimonials ()
     {
-        return view('testimonials');
+        $testimonials = Testimonial::get();
+        return view ('testimonials', compact ('testimonials'));
     }
     public function facilities()
     {

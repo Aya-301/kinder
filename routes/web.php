@@ -21,9 +21,9 @@ Route::get('/', function () {
 // Route::get('index', function () {
 //     return view('index');
 // })->name('index');
-Route::fallBack(function () {
-    return view('404');
-});
+// Route::fallBack(function () {
+//     return view('404');
+// });
 // Route::get('classes', function () {
 //     return view('classes');
 // })->name('classes');

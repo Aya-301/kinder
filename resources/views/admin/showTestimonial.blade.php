@@ -6,10 +6,10 @@
     <title>Show Testimonial</title>
 </head>
 <body>
-    <h1>Title is: {{$testimonial->clientName}}</h1><br>
-    <h2>Description is: {{$testimonial->profession}}</h2><br>
-    <h3>Updated at: {{$testimonial->updated_at}}</h3><br>
-    <h3>Created at: {{$testimonial->created_at}}</h3><br>
-    <h4>{{$testimonial->published}}</h4>
+    <h1>Title is: {{$testimonials->clientName}}</h1><br>
+    <h2>Description is: {{$testimonials->profession}}</h2><br>
+    <h3>Updated at: {{$testimonials->updated_at}}</h3><br>
+    <h3>Created at: {{$testimonials->created_at}}</h3><br>
+    <h4>{{$testimonials->published}}</h4>
 </body>
 </html>

@@ -12,7 +12,7 @@
 @include('includes.nav')
 <div class="container">
   <h2>update Testimonial data</h2>
-  <form action="{{route('updateTestimoninals', $testimonial->id)}}" method="post" enctype="multipart/form-data">
+  <form action="{{route('updateTestimoninals', $testimonials->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
     <div class="form-group">

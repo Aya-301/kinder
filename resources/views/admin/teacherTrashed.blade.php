@@ -9,34 +9,34 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.nav')
+@include('includes.navT')
 <div class="container">
-  <h2> Testimonial Trashed List</h2>            
+  <h2> Teachers Trashed List</h2>            
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Client Name</th>
-        <th>Profession</th>
-        <th>Published</th>
+        <th>Position</th>
+        <th>Teacher Name</th>
+        <th>Active</th>
          <th>Delete</th>
          <th>Restore</th>
        
       </tr>
     </thead>
     <tbody>
-        @foreach ($testimonials as $testimonial)
+        @foreach ($teachers as $teacher)
       <tr>
-        <td>{{$testimonial->clientName}}</td>
-        <td>{{$testimonial->profession}}</td>
+        <td>{{$teacher->position}}</td>
+        <td>{{$teacher->teacherName}}</td>
         <td>
-            @if($testimonial->published)
+            @if($teacher->active)
             yes
             @else 
             No
             @endif
         </td>
-        <td><a href="forceDelete/{{ $testimonial->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
-        <td><a href="restoreTestimoninal/{{ $testimonial->id }}" >Restore</a></td>
+        <td><a href="forceDeleteTeacher/{{ $teacher->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+        <td><a href="restoreTeacher/{{ $teacher->id }}" >Restore</a></td>
       </tr>
       @endforeach
     </tbody>

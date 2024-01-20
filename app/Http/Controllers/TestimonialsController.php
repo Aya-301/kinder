@@ -42,7 +42,7 @@ class TestimonialsController extends Controller
         $data['image'] = $fileName;
         $data['published'] = isset($request-> published);
         Testimonial::create ($data);
-        return redirect('admin.adminTestimonials');
+        return redirect('admin/adminTestimonials');
     }
 
     /**
@@ -50,8 +50,8 @@ class TestimonialsController extends Controller
      */
     public function show(string $id)
     {
-        $testimonial = Testimonial::findOrFail($id);
-        return view('admin.showTestimonial', compact('testimonial'));
+        $testimonials = Testimonial::findOrFail($id);
+        return view('admin.showTestimonial', compact('testimonials'));
     }
 
     /**
@@ -59,8 +59,8 @@ class TestimonialsController extends Controller
      */
     public function edit(string $id)
     {
-        $testimonial = Testimonial::findOrFail($id);
-        return view('admin.updateTestimonials', compact('testimonial'));
+        $testimonials = Testimonial::findOrFail($id);
+        return view('admin.updateTestimonials', compact('testimonials'));
     }
 
     /**
@@ -73,7 +73,7 @@ class TestimonialsController extends Controller
             'clientName'=>'required|string|max:50',
             'profession'=>'required|string',
             'content' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048'
             
         ],$message);
 
@@ -84,7 +84,7 @@ class TestimonialsController extends Controller
         }
         $data['published'] = isset($request-> published);
         Testimonial::where('id', $id)->update ($data);
-        return redirect('admin.adminTestimonials');
+        return redirect('admin/adminTestimonials');
     }
 
     /**
@@ -93,7 +93,7 @@ class TestimonialsController extends Controller
     public function destroy(string $id)
     {
         Testimonial::where('id', $id)->delete();
-        return redirect('admin.adminTestimonials');
+        return redirect('admin/adminTestimonials');
     }
 
     //get deleted items from trash
@@ -105,18 +105,18 @@ class TestimonialsController extends Controller
     //to delete items from trash
     public function forceDelete(string $id){
         Testimonial::where('id', $id)->forceDelete();
-        return redirect('admin.adminTestimonials');
+        return redirect('admin/adminTestimonials');
     }
 
     //to restore item from trash
     public function restore(string $id){
         Testimonial::where('id', $id)->restore();
-        return redirect('admin.adminTestimonials');
+        return redirect('admin/adminTestimonials');
     }
     public function message(){
         return[
             'clientName.required'=>' This field is required ',
-            'profession.string'=>'This field is required',
+            'profession.required'=>'This field is required',
             'content.required'=>' This field is required',
             'image.required'=>' You Should choose a file',
             'image.mimes'=> 'Incorrect image type',
