@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassModel;
+use App\Models\Teacher;
+use App\Traits\Common;
 
 class ClassController extends Controller
 {
+    use common;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $classes = ClassModel::get();
+        return view ('admin.adminclasses', compact ('classes'));
     }
 
     /**
@@ -20,7 +24,8 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+        $teachers = Teacher::get();
+        return view ('admin.addClass', compact('teachers'));
     }
 
     /**
@@ -28,7 +33,24 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = $this->message();
+        $data= $request->validate([
+            'teacherId'=>'required',
+            'className'=>'required|string|max:50', 
+            'class_image' => 'required|mimes:png,jpg,jpeg',
+            'fromAge' => 'required',
+            'toAge' => 'required',
+            'fromTime' => 'required',
+            'toTime' => 'required',
+            'capacity' => 'required|string',
+            'price' => 'required|string',
+            'active'=>'required'
+        ],$message);
+        $fileName = $this->uploadFile($request->class_image, 'assets/images');    
+        $data['class_image'] = $fileName;
+        $data['active'] = isset($request-> active);
+        ClassModel::create ($data);
+        return redirect('admin/adminClasses');
     }
 
     /**
@@ -36,7 +58,8 @@ class ClassController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $classes = ClassModel::findOrFail($id);
+        return view('admin/showClass', compact('classes'));
     }
 
     /**
@@ -44,7 +67,9 @@ class ClassController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $classes = ClassModel::findOrFail($id);
+        $teachers = Teacher::get();
+        return view('admin/updateClasses', compact('classes' ,'teachers'));
     }
 
     /**
@@ -52,7 +77,27 @@ class ClassController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $message = $this->message();
+        $data= $request->validate([
+            'teacherId'=>'required',
+            'className'=>'required|string|max:50', 
+            'class_image' => 'sometimes|mimes:png,jpg,jpeg',
+            'fromAge' => 'required',
+            'toAge' => 'required',
+            'fromTime' => 'required',
+            'toTime' => 'required',
+            'capacity' => 'required|string',
+            'price' => 'required|string',
+            'active'=>'required'
+        ],$message);
+        if($request->hasFile('class_image')){
+            $fileName = $this->uploadFile($request->image, 'assets/images');    
+            $data['class_image'] = $fileName;
+            unlink("assets/images/" . $request->oldImage);
+        }
+        $data['active'] = isset($request-> active);
+        ClassModel::create ($data);
+        return redirect('admin/adminClasses');
     }
 
     /**
@@ -62,4 +107,19 @@ class ClassController extends Controller
     {
         //
     }
+
+    public function message(){
+        return[
+            'teacherId.required'=>' You Should choose a file',
+            'className.required'=>'This field is required',
+            'class_image.required'=>' You Should choose a file',
+            'class_image.mimes'=> 'Incorrect image type',
+            'class_image.max'=> 'Max file size exceeded',
+            'fromAge.required'=>' This field is required',
+            'toAge.required'=>' This field is required',
+            'fromTime.required'=>' This field is required',
+            'toTime.required'=>' This field is required',
+            'capacity.required'=>' This field is required',
+            'price.required'=>' This field is required',
+        ];}
 }

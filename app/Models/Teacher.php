@@ -10,6 +10,7 @@ class Teacher extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
+        'id',
         'position',
         'teacherName',
         'facebook',

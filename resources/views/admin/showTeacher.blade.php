@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Testimonial</title>
+    <title>Show Teacher</title>
 </head>
 <body>
     <h1>Position is: {{$teachers->position}}</h1><br>

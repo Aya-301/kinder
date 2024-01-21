@@ -31,7 +31,7 @@
         <td>{{$testimonial->clientName}}</td>
         <td>{{$testimonial->profession}}</td>
         <td>{{$testimonial->content}}</td>
-        <td>{{$testimonial->image}}</td>
+        <td><img src="{{asset('assets/images/'. $testimonial->image )}}" alt="" style="width:100px;"></td>
         <td>
             @if($testimonial->published)
             yes

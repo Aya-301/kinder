@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('includes.navT')
+@include('includes.nav')
 <div class="container">
   <h2>Add a new Teacher data</h2>
   <form action="{{route('insertTeacher')}}" method="post" enctype="multipart/form-data">

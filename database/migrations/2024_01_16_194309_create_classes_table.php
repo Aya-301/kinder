@@ -16,14 +16,14 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('teacherId',50)->constrained('teachers');
             $table->string('className');
-            $table->tinyInteger('age');
-            $table->date('time');
+            $table->tinyInteger('fromAge');
+            $table->tinyInteger('ToAge');
+            $table->time('fromTime');
+            $table->time('toTime');
             $table->string('capacity',3);
             $table->string('price',20);
             $table->boolean('active');
             $table->string('class_image',100);
-
-
             $table->softDeletes(); 
         });
     }
