@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\Teacher;
+use App\Models\ClassModel;
 
 class KindController extends Controller
 {
+
     public function home()
     {
-        $teachers = Teacher::get();
-        $testimonials = Testimonial::get();
-        return view ('index', compact ('teachers', 'testimonials'));
+        $teachers = Teacher::where('active', 1)->paginate(2);
+        $testimonials = Testimonial::where('published', 1)->paginate(2);
+        $classes = ClassModel::where('active', 1)->paginate(2);
+        return view ('index', compact ('teachers', 'testimonials', 'classes'));
     }
     public function team()
     {
-        $teachers = Teacher::get();
+        $teachers = Teacher::paginate(2);
         return view ('teachers', compact ('teachers'));
     }
     public function error ()
@@ -38,7 +41,8 @@ class KindController extends Controller
     }
     public function classes()
     {
-        return view('classes');
+        $classes = ClassModel::paginate(2);
+        return view ('classes', compact ('classes'));
     }
     public function appointment()
     {
@@ -46,7 +50,7 @@ class KindController extends Controller
     }
     public function testimonials ()
     {
-        $testimonials = Testimonial::get();
+        $testimonials = Testimonial::paginate(2);
         return view ('testimonials', compact ('testimonials'));
     }
     public function facilities()

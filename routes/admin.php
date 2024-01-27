@@ -5,6 +5,7 @@ use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ContactUsController;
 
 Route::prefix('admin')->group(function () {
     Route::get('addtest',[TestimonialsController::class,'create'])->name('addtest');
@@ -41,6 +42,17 @@ Route::prefix('admin')->group(function () {
     Route::post('insertClass',[ClassController::class,'store'])->name('insertClass');
     Route::get('showClass/{id}',[ClassController::class,'show'])->name('showClass');
     Route::get('editClass/{id}',[ClassController::class,'edit'])->name('editClass');
-    Route::put('updaClass/{id}',[ClassController::class,'update'])->name('updaClass');
+    Route::put('updateClass/{id}',[ClassController::class,'update'])->name('updateClass');
+    Route::get('deleteClass/{id}',[ClassController::class,'destroy']);
+    Route::get('classesTrashed',[ClassController::class,'trashed'])->name('classesTrashed');
+    Route::get('forceDeleteClass/{id}',[ClassController::class,'forceDelete'])->name('forceDeleteClass');
+    Route::get('restoreClass/{id}',[ClassController::class,'restore'])->name('restoreClass');
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Route::get('adminContacts',[ContactUsController::class,'index'])->name('adminContacts');
+    Route::get('addContact',[ContactUsController::class,'create'])->name('addContact');
+    Route::post('insertContact',[ContactUsController::class,'store'])->name('insertContact');
+    Route::get('showContact/{id}',[ContactUsController::class,'show'])->name('showContact');
+    Route::get('deleteContact/{id}',[ContactUsController::class,'destroy']);
+    
 });
 ?>

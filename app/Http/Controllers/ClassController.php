@@ -15,7 +15,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $classes = ClassModel::get();
+        $classes = ClassModel::paginate(2);
         return view ('admin.adminclasses', compact ('classes'));
     }
 
@@ -44,7 +44,6 @@ class ClassController extends Controller
             'toTime' => 'required',
             'capacity' => 'required|string',
             'price' => 'required|string',
-            'active'=>'required'
         ],$message);
         $fileName = $this->uploadFile($request->class_image, 'assets/images');    
         $data['class_image'] = $fileName;
@@ -69,7 +68,7 @@ class ClassController extends Controller
     {
         $classes = ClassModel::findOrFail($id);
         $teachers = Teacher::get();
-        return view('admin/updateClasses', compact('classes' ,'teachers'));
+        return view('admin/updateClass', compact('classes' ,'teachers'));
     }
 
     /**
@@ -88,15 +87,14 @@ class ClassController extends Controller
             'toTime' => 'required',
             'capacity' => 'required|string',
             'price' => 'required|string',
-            'active'=>'required'
         ],$message);
         if($request->hasFile('class_image')){
-            $fileName = $this->uploadFile($request->image, 'assets/images');    
+            $fileName = $this->uploadFile($request->class_image, 'assets/images');    
             $data['class_image'] = $fileName;
             unlink("assets/images/" . $request->oldImage);
         }
         $data['active'] = isset($request-> active);
-        ClassModel::create ($data);
+        ClassModel::where('id', $id)->update($data);
         return redirect('admin/adminClasses');
     }
 
@@ -105,7 +103,24 @@ class ClassController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ClassModel::where('id', $id)->delete();
+        return redirect('admin/adminClasses');
+    }
+    public function trashed(){
+        $classes=ClassModel::onlyTrashed()->get();
+        return view('admin.trashClass', compact('classes'));
+    }
+
+    //to delete items from trash
+    public function forceDelete(string $id){
+        ClassModel::where('id', $id)->forceDelete();
+        return redirect('admin/adminClasses');
+    }
+
+    //to restore item from trash
+    public function restore(string $id){
+        ClassModel::where('id', $id)->restore();
+        return redirect('admin/adminClasses');
     }
 
     public function message(){

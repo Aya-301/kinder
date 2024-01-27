@@ -50,6 +50,7 @@
       @endforeach
     </tbody>
   </table>
+  {{$teachers->links()}}
 </div>
 
 </body>

@@ -48,32 +48,44 @@
                     <div class="row g-0">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <div class="h-100 d-flex flex-column justify-content-center p-5">
-                                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                                <form>
+                                <form action="{{route('insertContact')}}" method="post">
+                                @csrf
                                     <div class="row g-3">
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                                                <input type="text" class="form-control border-0" id="name" placeholder="Your Name" name="name" value="{{old('name')}}">
                                                 <label for="name">Your Name</label>
                                             </div>
+                                            @error('name')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
+                                                <input type="email" class="form-control border-0" id="email" placeholder="Your Email" name="email" value="{{old('email')}}">
                                                 <label for="email">Your Email</label>
                                             </div>
+                                            @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
+                                                <input type="text" class="form-control border-0" id="subject" placeholder="Subject" name="subject" value="{{old('subject')}}">
                                                 <label for="subject">Subject</label>
                                             </div>
+                                            @error('subject')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message" name="message" style="height: 100px">{{old('message')}}</textarea>
                                                 <label for="message">Message</label>
                                             </div>
+                                            @error('message')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>

@@ -37,14 +37,14 @@
     </div>
     <div class="form-group">
       <label for="fromTime">From Time:</label>
-      <input type="text" class="form-control" id="fromTime" placeholder="" name="fromTime" value="{{old('fromTime')}}">
+      <input type="time" class="form-control" id="fromTime" placeholder="" name="fromTime" value="{{old('fromTime')}}">
     @error('fromTime')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     </div>
     <div class="form-group">
       <label for="toTime">To Time:</label>
-      <input type="text" class="form-control" id="toTime" placeholder="" name="toTime" value="{{old('toTime')}}">
+      <input type="time" class="form-control" id="toTime" placeholder="" name="toTime" value="{{old('toTime')}}">
     @error('toTime')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror

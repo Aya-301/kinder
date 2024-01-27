@@ -51,11 +51,12 @@
         <td><img src="{{asset('assets/images/'. $class->class_image )}}" alt="" style="width:100px;"> </td>
         <td><a href="showClass/{{ $class->id }}">Show</a></td>
         <td><a href="editClass/{{ $class->id }}">Edit</a></td>
-        {-- <td><a href="deleteClass/{{ $class->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td> --}
+        <td><a href="deleteClass/{{ $class->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
       </tr>
       @endforeach
     </tbody>
   </table>
+  {{$classes->links()}}
 </div>
 
 </body>

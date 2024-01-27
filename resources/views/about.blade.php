@@ -57,7 +57,7 @@
         </div>
         <!-- About End -->
         @include('includes.callToAction')
-        @include('includes.team')
+        @include('includes.about')
 @endsection
 
 @section('title')

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KindController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,9 @@ Route::get('/', function () {
 // Route::get('index', function () {
 //     return view('index');
 // })->name('index');
-// Route::fallBack(function () {
-//     return view('404');
-// });
+Route::fallBack(function () {
+    return view('404');
+});
 // Route::get('classes', function () {
 //     return view('classes');
 // })->name('classes');
@@ -49,7 +50,7 @@ Route::get('/', function () {
 //     return view('appointment');
 // })->name('appointment');
 
-Route::get('/home', [KindController::class, 'home'])->name('index');
+Route::get('/home1', [KindController::class, 'home'])->name('index');
 Route::get('/teachers', [KindController::class, 'team'])->name('teachers');
 Route::get('/about', [KindController::class, 'about'])->name('about');
 Route::get('/facilities', [KindController::class, 'facilities'])->name('facilities');
@@ -58,4 +59,7 @@ Route::get('/appointment', [KindController::class, 'appointment'])->name('appoin
 Route::get('/classes', [KindController::class, 'classes'])->name('classes');
 Route::get('/becomeAteacher', [KindController::class, 'calltoaction'])->name('becomeAteacher');
 Route::get('/contact', [KindController::class, 'contact'])->name('contact');
-// Route::fallBack('/404', [KindController::class, 'error'])->name('404');
+// Route::fallBack('404', [KindController::class, 'error']);
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

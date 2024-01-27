@@ -12,9 +12,12 @@ class TestimonialsController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
-        $testimonials = Testimonial::get();
+        
+        //$testimonials = Testimonial::get();
+        $testimonials = Testimonial::paginate(2);
         return view ('admin.adminTestimonials', compact ('testimonials'));
     }
 

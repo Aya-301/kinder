@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::get();
+        $teachers = Teacher::paginate(2);
         return view ('admin.adminTeachers', compact ('teachers'));
     }
 
@@ -39,7 +39,6 @@ class TeacherController extends Controller
             'facebook' => 'required|string',
             'twiter' => 'required|string',
             'instagram' => 'required|string',
-            'active' => 'required|string'
         ],$message);
         $fileName = $this->uploadFile($request->image, 'assets/images');    
         $data['image'] = $fileName;

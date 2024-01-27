@@ -1,5 +1,5 @@
 <!-- Testimonial Start -->
-<div class="container-xxl py-5">
+    <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Our Clients Say!</h1>
@@ -10,7 +10,7 @@
                     <div class="testimonial-item bg-light rounded p-5">
                         <p class="fs-5">{{$testimonial->content}}</p>
                         <div class="d-flex align-items-center bg-white me-n5" style="border-radius: 50px 0 0 50px;">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{asset('assets/img/testimonial-1.jpg')}}" style="width: 90px; height: 90px;">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('assets/images/'.$testimonial->image) }}" style="width: 90px; height: 90px;">
                             <div class="ps-3">
                                 <h3 class="mb-1">{{$testimonial->clientName}}</h3>
                                 <span>{{$testimonial->profession}}</span>
@@ -22,7 +22,8 @@
                         </div>
                         @endforeach
                     </div>
+                    {{$testimonials->links()}}
                 </div>
             </div>
-        </div>
+    </div>
         <!-- Testimonial End -->
