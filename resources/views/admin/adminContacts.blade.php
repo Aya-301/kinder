@@ -21,7 +21,7 @@
         <th>Message</th>
         <th>Show</th>
         <th>Delete</th>
-        <th>Unread Emails</th>
+        <th>Unread Messages</th>
       </tr>
     </thead>
     <tbody>
@@ -33,6 +33,13 @@
         <td>{{$contact->message}}</td>
         <td><a href="showContact/{{ $contact->id }}">Show</a></td>
         <td><a href="deleteContact/{{ $contact->id }}" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+        <td>
+            @if($contact->read_at)
+            read
+            @else 
+            unread
+            @endif 
+        </td>
       </tr>
       @endforeach
     </tbody>

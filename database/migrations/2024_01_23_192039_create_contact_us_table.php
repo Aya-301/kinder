@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email', 50);
             $table->string('subject', 30);
             $table->longText('message');
+            $table->boolean('read_at')->default(0);
 
         });
     }

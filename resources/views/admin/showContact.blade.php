@@ -6,9 +6,9 @@
     <title>Show Contact</title>
 </head>
 <body>
-    <h1>Name is: {{$contacts->name}}</h1><br>
-    <h2>Email is: {{$contacts->email}}</h2><br>
-    <h3>Supject is: {{$contacts->supject}}</h3><br>
+    <h2>Name is: {{$contacts->name}}</h2><br>
+    <h3>Email is: {{$contacts->email}}</h3><br>
+    <h3>Subject is: {{$contacts->subject}}</h3><br>
     <h3>Message is: {{$contacts->message}}</h3><br>
 </body>
 </html>

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ContactUs extends Model 
 {
@@ -13,6 +12,7 @@ class ContactUs extends Model
         'name',
         'email',
         'subject',
-        'message'
+        'message',
+        'read_at'
         ];
 }

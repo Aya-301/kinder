@@ -50,7 +50,9 @@ class ContactUsController extends Controller
      */
     public function show(string $id)
     {
+        
         $contacts = ContactUs::findOrFail($id);
+        $contacts->update(['read_at'=>1]);
         return view('admin/showContact', compact('contacts'));
     }
 
